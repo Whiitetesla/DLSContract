@@ -17,7 +17,8 @@ namespace DYMApi.Controllers {
 		}
 
 		[HttpGet]
-		public async Task<IActionResult> DidYouMean(string query, int size) {
+		public async Task<IActionResult> DidYouMean(string query) {
+			int size = 5;
 			if (String.IsNullOrEmpty(query)) return Ok(new List<string>());
 			if (size == 0) return Ok(new List<string>());
 
