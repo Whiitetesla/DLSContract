@@ -21,22 +21,24 @@ namespace DYMApi.Controllers {
 			if (String.IsNullOrEmpty(query)) return Ok(new List<string>());
 			if (size == 0) return Ok(new List<string>());
 
-			var result = await mediator.Send(new CalculateDistanceCommand(query));
+			try {
+				var result = await mediator.Send(new CalculateDistanceCommand(query));
 
-			IEnumerable<KeyValuePair<string, int>> Wanted;
-			if (query.Length > 4) {
-				Wanted = result.Where(x => x.Value == 2);
-			} else
-				Wanted = result.Where(x => x.Value == 1);
+				IEnumerable<KeyValuePair<string, int>> Wanted;
+				if (query.Length > 4) {
+					Wanted = result.Where(x => x.Value == 2);
+				} else
+					Wanted = result.Where(x => x.Value == 1);
 
-			if (size > Wanted.Count()) return StatusCode(500);
+				var final = new List<string>();
+				for (int i = 0; i < size; i++) {
+					final.Add(Wanted.ElementAt(i).Key);
+				}
 
-			var final = new List<string>();
-			for (int i = 0; i < size; i++) {
-				final.Add(Wanted.ElementAt(i).Key);
+				return Ok(final);
+			} catch (Exception) {
+				return StatusCode(500);
 			}
-
-			return Ok(final);
 		}
 
 	}
