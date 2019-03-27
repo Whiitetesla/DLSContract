@@ -29,6 +29,8 @@ namespace DYMApi.Controllers {
 			} else
 				Wanted = result.Where(x => x.Value == 1);
 
+			if (size > Wanted.Count()) return StatusCode(500);
+
 			var final = new List<string>();
 			for (int i = 0; i < size; i++) {
 				final.Add(Wanted.ElementAt(i).Key);
