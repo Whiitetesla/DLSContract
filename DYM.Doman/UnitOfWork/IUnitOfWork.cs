@@ -10,7 +10,5 @@ namespace DYM.Doman.UnitOfWork
     public interface IUnitOfWork
     {
         IReposetory Reposetory { get; }
-
-        Task<int> SaveChanges(CancellationToken cancellationToken = default(CancellationToken));
     }
 }

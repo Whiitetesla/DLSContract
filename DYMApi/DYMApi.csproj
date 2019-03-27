@@ -13,6 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DYM.Doman\DYM.Doman.csproj" />
+    <ProjectReference Include="..\DYM.Infrastructure\DYM.Infrastructure.csproj" />
     <ProjectReference Include="..\DYMApi.Application\DYMApi.Application.csproj" />
   </ItemGroup>
 

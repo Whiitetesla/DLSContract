@@ -1,5 +1,6 @@
 ﻿using DYM.Doman.UnitOfWork;
 using DYM.Doman.UnitOfWork.Reposetory;
+using DYM.Infrastructure.UnitOfWork.Reposetorys;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,7 +11,12 @@ namespace DYM.Infrastructure.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public IReposetory Reposetory => throw new NotImplementedException();
+        public IReposetory Reposetory { get; }
+
+        public UnitOfWork()
+        {
+            this.Reposetory = new Reposetory();
+        }
 
     }
 }

@@ -11,7 +11,7 @@ namespace DYM.Infrastructure.UnitOfWork.Reposetorys
 {
     public class Reposetory : IReposetory
     {
-        public Task<IReadOnlyCollection<string>> Al(CancellationToken cancellationToken)
+        public Task<IReadOnlyCollection<string>> All(CancellationToken cancellationToken)
         {
             IReadOnlyCollection<string> temp = new FakeDb().Words.AsReadOnly();
             return Task.FromResult(temp);
