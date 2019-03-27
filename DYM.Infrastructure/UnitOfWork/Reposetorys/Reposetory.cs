@@ -1,6 +1,7 @@
 ﻿using DYM.Doman.Entities;
 using DYM.Doman.UnitOfWork.Reposetory;
 using DYM.Infrastructure.FakeDB;
+using DYM.Infrastructure.RealData;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,7 +14,7 @@ namespace DYM.Infrastructure.UnitOfWork.Reposetorys
     {
         public Task<IReadOnlyCollection<string>> All(CancellationToken cancellationToken)
         {
-            IReadOnlyCollection<string> temp = new FakeDb().Words.AsReadOnly();
+            IReadOnlyCollection<string> temp = new DataReader().GetData().AsReadOnly();
             return Task.FromResult(temp);
         }
     }
