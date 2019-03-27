@@ -10,13 +10,11 @@ namespace DYM.Doman.UnitOfWork.Reposetory
     public interface IReposetory
     {
         /// <summary>
-        ///  Gets all entitys in the system
+        /// Gets all entitys in the system
         /// </summary>
-        /// <typeparam name="TEntity"></typeparam>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<IReadOnlyCollection<TEntity>> All<TEntity>(
-            CancellationToken cancellationToken)
-            where TEntity : Entity;
+        Task<IReadOnlyCollection<string>> All(
+            CancellationToken cancellationToken);
     }
 }

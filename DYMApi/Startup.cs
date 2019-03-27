@@ -12,6 +12,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MediatR;
 using DYMApi.Application.Commands;
+using DYM.Doman.UnitOfWork;
+using DYM.Infrastructure.UnitOfWork;
 
 namespace DYMApi
 {
@@ -27,9 +29,12 @@ namespace DYMApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-			services.AddMediatR(typeof(Command));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+
+            services.AddMediatR(typeof(Command));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
