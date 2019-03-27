@@ -39,7 +39,7 @@ namespace DYMApi.Application {
 
 			Parallel.ForEach(dictionary, (word) => {
 				var distance = CalculateDistanceBetween(word, input);
-				while (!result.TryAdd(word, distance));
+				result.TryAdd(word, distance);
 			});
 
 			return result;
