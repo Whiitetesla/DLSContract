@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace DYMApi.Application {
 	public class Levenshtein {
-		public static int CalculateDistance(string a, string b) {
+		private static int CalculateDistanceBetween(string a, string b) {
 			if (String.IsNullOrEmpty(a) && String.IsNullOrEmpty(b)) {
 				return 0;
 			}
@@ -28,6 +32,17 @@ namespace DYMApi.Application {
 						);
 				}
 			return distances[lengthA, lengthB];
+		}
+
+		public static IDictionary<string, int> CalculateDistances(string input, IReadOnlyCollection<string> dictionary) {
+			var result = new ConcurrentDictionary<string, int>();
+
+			Parallel.ForEach(dictionary, (word) => {
+				var distance = CalculateDistanceBetween(word, input);
+				result.TryAdd(word, distance);
+			});
+
+			return result;
 		}
 	}
 }
