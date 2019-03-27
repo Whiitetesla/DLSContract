@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DYMApi.Controllers
@@ -10,6 +11,12 @@ namespace DYMApi.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+		private readonly IMediator mediator;
+
+		public ValuesController(IMediator mediator) {
+			this.mediator = mediator;
+		}
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
